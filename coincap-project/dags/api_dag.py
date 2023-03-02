@@ -2,6 +2,9 @@ import airflow
 from airflow import DAG
 from airflow.providers.http.sensors.http import HttpSensor
 from airflow.providers.http.operators.http import SimpleHttpOperator
+from airflow.providers.postgres.operators.postgres import PostgresOperator
+
+
 
 import json
 
@@ -32,3 +35,18 @@ with DAG('api_dag', default_args=default_args, schedule_interval="@daily", catch
         http_conn_id='api_call',
         endpoint= '/bitcoin/history?interval=d1'
     )
+
+    create_table = PostgresOperator(
+        task_id = 'create_table',
+        postgres_conn_id='postgres',
+        sql='''
+            drop table if exists rates;
+            create table rates(
+                rate float not null,
+                symbol text not null
+            );
+        '''
+    )
+
+    is_api_available >> create_table
+
