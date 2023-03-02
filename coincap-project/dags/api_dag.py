@@ -1,6 +1,9 @@
 import airflow
 from airflow import DAG
 from airflow.providers.http.sensors.http import HttpSensor
+from airflow.providers.http.operators.http import SimpleHttpOperator
+
+import json
 
 
 from datetime import datetime, timedelta
@@ -20,15 +23,12 @@ default_args = {
 
 }
 
-with DAG('coincap_pipeline', default_args=default_args, schedule_interval="@daily", catchup=False) as dag:
+with DAG('api_dag', default_args=default_args, schedule_interval="@daily", catchup=False) as dag:
 
 
     # Dag #1 - Check if the API is available
     is_api_available = HttpSensor(
         task_id='is_api_available',
-        method='GET',
-        http_conn_id='is_api_available',
-        endpoint= 'v2/assets/bitcoin/history?interval=d1',
-        response_check= lambda response: 'Usd' in response.text,
-        poke_interval = 5
+        http_conn_id='api_call',
+        endpoint= '/bitcoin/history?interval=d1'
     )
