@@ -1,0 +1,25 @@
+[2023-03-03T15:09:41.120+0000] {taskinstance.py:1083} INFO - Dependencies all met for <TaskInstance: ETL_dag.load_data manual__2023-03-03T15:04:34.618953+00:00 [queued]>
+[2023-03-03T15:09:41.131+0000] {taskinstance.py:1083} INFO - Dependencies all met for <TaskInstance: ETL_dag.load_data manual__2023-03-03T15:04:34.618953+00:00 [queued]>
+[2023-03-03T15:09:41.131+0000] {taskinstance.py:1279} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-03T15:09:41.131+0000] {taskinstance.py:1280} INFO - Starting attempt 2 of 2
+[2023-03-03T15:09:41.131+0000] {taskinstance.py:1281} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-03T15:09:41.145+0000] {taskinstance.py:1300} INFO - Executing <Task(PythonOperator): load_data> on 2023-03-03 15:04:34.618953+00:00
+[2023-03-03T15:09:41.150+0000] {standard_task_runner.py:55} INFO - Started process 10563 to run task
+[2023-03-03T15:09:41.153+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'ETL_dag', 'load_data', 'manual__2023-03-03T15:04:34.618953+00:00', '--job-id', '43', '--raw', '--subdir', 'DAGS_FOLDER/ETL_dag.py', '--cfg-path', '/tmp/tmpd869yks9']
+[2023-03-03T15:09:41.155+0000] {standard_task_runner.py:83} INFO - Job 43: Subtask load_data
+[2023-03-03T15:09:41.208+0000] {task_command.py:388} INFO - Running <TaskInstance: ETL_dag.load_data manual__2023-03-03T15:04:34.618953+00:00 [running]> on host bb703684ec8f
+[2023-03-03T15:09:41.277+0000] {taskinstance.py:1509} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=Airflow
+AIRFLOW_CTX_DAG_ID=ETL_dag
+AIRFLOW_CTX_TASK_ID=load_data
+AIRFLOW_CTX_EXECUTION_DATE=2023-03-03T15:04:34.618953+00:00
+AIRFLOW_CTX_TRY_NUMBER=2
+AIRFLOW_CTX_DAG_RUN_ID=manual__2023-03-03T15:04:34.618953+00:00
+[2023-03-03T15:09:41.278+0000] {postgres.py:158} INFO - Running copy expert: COPY bitcoin_data FROM stdin WITH DELIMITER as ',', filename: /tmp/processed_data.csv
+[2023-03-03T15:09:41.287+0000] {base.py:73} INFO - Using connection ID 'postgres' for task execution.
+[2023-03-03T15:09:41.294+0000] {python.py:177} INFO - Done. Returned value was: None
+[2023-03-03T15:09:41.305+0000] {taskinstance.py:1323} INFO - Marking task as SUCCESS. dag_id=ETL_dag, task_id=load_data, execution_date=20230303T150434, start_date=20230303T150941, end_date=20230303T150941
+[2023-03-03T15:09:41.325+0000] {local_task_job.py:208} INFO - Task exited with return code 0
+[2023-03-03T15:09:41.345+0000] {taskinstance.py:2578} INFO - 0 downstream tasks scheduled from follow-on schedule check

@@ -4,6 +4,7 @@ from airflow.providers.http.sensors.http import HttpSensor
 from airflow.providers.http.operators.http import SimpleHttpOperator
 from airflow.operators.python import PythonOperator
 from airflow.providers.postgres.operators.postgres import PostgresOperator
+from airflow.providers.postgres.hooks.postgres import PostgresHook
 
 
 
@@ -24,6 +25,20 @@ def _process_data(ti):
     df['date'] = df['date'].apply(lambda x: pd.to_datetime(x).date())
     df.to_csv('/tmp/processed_data.csv', index=None, header=False)
     
+def _store_data():
+    '''
+    This function uses the Postgres Hook to copy users from processed_data.csv
+    and into the table
+    
+    '''
+    # Connect to the Postgres connection
+    hook = PostgresHook(postgres_conn_id = 'postgres')
+
+    # Insert the data from the CSV file into the postgres database
+    hook.copy_expert(
+        sql = "COPY bitcoin_data FROM stdin WITH DELIMITER as ','",
+        filename='/tmp/processed_data.csv'
+    )
 
 
 
@@ -58,7 +73,7 @@ with DAG('ETL_dag', default_args=default_args, schedule_interval="@daily", catch
             drop table if exists bitcoin_data; 
             create table bitcoin_data(
                 priceUsd float not null,
-                time int not null,
+                time bigint not null,
                 circulatingsupply float not null,
                 date date not null,
                 hour int not null
@@ -80,6 +95,12 @@ with DAG('ETL_dag', default_args=default_args, schedule_interval="@daily", catch
         python_callable=_process_data
 
     )
+    
+    load_data = PythonOperator(
+        task_id = 'load_data',
+        python_callable=_store_data
 
-    is_api_available >> create_table >> extract_data
+    )
+
+    is_api_available >> create_table >> extract_data >> transform_data >> load_data
 
