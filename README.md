@@ -16,7 +16,7 @@
 ![image](https://user-images.githubusercontent.com/109003970/222769342-7847983c-135a-41f5-a005-1c71df9295b4.png)
 
 
-### Next step for this project: 
+### Next steps for this project: 
 #### 1. Deploy the containers on the cloud (GCP).
 #### 2. Use the bitcoin hourly prices that we fetched for some DataScience 
 
