@@ -5,7 +5,7 @@
 
 #### 1. Set up the docker-compose file for airflow.
 
-#### 2. Set up the DAG.py file with the following sequence of tasks:
+#### 2. [Set up the DAG.py file with the following sequence of tasks:](https://github.com/Anassidr/Coincap-etl-pipeline/blob/main/coincap-project/dags/ETL_dag.py)
   - Use the HTTPSensor Operator to make sure the API is functional
   - Use the Postgres Operator to create the table in the postgres container
   - Use the SimpleHttpOperator to get the data from the endpoint and store it in Xcom
