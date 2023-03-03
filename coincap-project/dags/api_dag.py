@@ -26,24 +26,28 @@ default_args = {
 
 }
 
-with DAG('api_dag', default_args=default_args, schedule_interval="@daily", catchup=False) as dag:
+with DAG('ETL_dag', default_args=default_args, schedule_interval="@daily", catchup=False) as dag:
 
 
-    # Dag #1 - Check if the API is available
+    # Task 1 : Check if the API is available
     is_api_available = HttpSensor(
         task_id='is_api_available',
         http_conn_id='api_call',
         endpoint= '/bitcoin/history?interval=d1'
     )
 
+
+    # Task 2 : Create postgres table 
     create_table = PostgresOperator(
         task_id = 'create_table',
         postgres_conn_id='postgres',
         sql='''
             drop table if exists rates;
-            create table rates(
-                rate float not null,
-                symbol text not null
+            drop table if exists bitcoin_data; 
+            create table bitcoin_data(
+                priceUsd float not null,
+                time int not null,
+                date date not null
             );
         '''
     )
