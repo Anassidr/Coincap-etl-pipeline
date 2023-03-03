@@ -1,0 +1,25 @@
+[2023-03-03T14:19:47.054+0000] {taskinstance.py:1083} INFO - Dependencies all met for <TaskInstance: ETL_dag.is_api_available manual__2023-03-03T14:19:45.621558+00:00 [queued]>
+[2023-03-03T14:19:47.065+0000] {taskinstance.py:1083} INFO - Dependencies all met for <TaskInstance: ETL_dag.is_api_available manual__2023-03-03T14:19:45.621558+00:00 [queued]>
+[2023-03-03T14:19:47.066+0000] {taskinstance.py:1279} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-03T14:19:47.066+0000] {taskinstance.py:1280} INFO - Starting attempt 1 of 2
+[2023-03-03T14:19:47.066+0000] {taskinstance.py:1281} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-03T14:19:47.077+0000] {taskinstance.py:1300} INFO - Executing <Task(HttpSensor): is_api_available> on 2023-03-03 14:19:45.621558+00:00
+[2023-03-03T14:19:47.083+0000] {standard_task_runner.py:55} INFO - Started process 5429 to run task
+[2023-03-03T14:19:47.086+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'ETL_dag', 'is_api_available', 'manual__2023-03-03T14:19:45.621558+00:00', '--job-id', '21', '--raw', '--subdir', 'DAGS_FOLDER/ETL_dag.py', '--cfg-path', '/tmp/tmptsn3xmw_']
+[2023-03-03T14:19:47.086+0000] {standard_task_runner.py:83} INFO - Job 21: Subtask is_api_available
+[2023-03-03T14:19:47.148+0000] {task_command.py:388} INFO - Running <TaskInstance: ETL_dag.is_api_available manual__2023-03-03T14:19:45.621558+00:00 [running]> on host bb703684ec8f
+[2023-03-03T14:19:47.212+0000] {taskinstance.py:1509} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=Airflow
+AIRFLOW_CTX_DAG_ID=ETL_dag
+AIRFLOW_CTX_TASK_ID=is_api_available
+AIRFLOW_CTX_EXECUTION_DATE=2023-03-03T14:19:45.621558+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2023-03-03T14:19:45.621558+00:00
+[2023-03-03T14:19:47.213+0000] {http.py:122} INFO - Poking: /bitcoin/history?interval=h1
+[2023-03-03T14:19:47.223+0000] {base.py:73} INFO - Using connection ID 'api_call' for task execution.
+[2023-03-03T14:19:47.632+0000] {base.py:228} INFO - Success criteria met. Exiting.
+[2023-03-03T14:19:47.644+0000] {taskinstance.py:1323} INFO - Marking task as SUCCESS. dag_id=ETL_dag, task_id=is_api_available, execution_date=20230303T141945, start_date=20230303T141947, end_date=20230303T141947
+[2023-03-03T14:19:47.699+0000] {local_task_job.py:208} INFO - Task exited with return code 0
+[2023-03-03T14:19:47.760+0000] {taskinstance.py:2578} INFO - 1 downstream tasks scheduled from follow-on schedule check

@@ -55,13 +55,13 @@ with DAG('ETL_dag', default_args=default_args, schedule_interval="@daily", catch
     )
 
     extract_data = SimpleHttpOperator(
-            task_id = 'extract_data',
-            http_conn_id='is_api_available',
-            method='GET',
-            endpoint= '/bitcoin/history?interval=h1'
-            response_filter=lambda response: json.loads(response.text),
-            log_response=True
+        task_id = 'extract_data',
+        http_conn_id='api_call',
+        method='GET',
+        endpoint= '/bitcoin/history?interval=h1',
+        response_filter=lambda response: json.loads(response.text),
+        log_response=True
     )
 
-    is_api_available >> create_table
+    is_api_available >> create_table >> extract_data
 
