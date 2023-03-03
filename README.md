@@ -13,7 +13,7 @@
   - Use a PythonOperator to load the data from the .csv to my postgres database using PostgresHook
   - Use the PgAdmin2 interface to make queries on my postgres database 
   
-  ![image](https://user-images.githubusercontent.com/109003970/222764614-ae9913da-4fd1-475f-860f-a729c1b3601c.png)
+![image](https://user-images.githubusercontent.com/109003970/222769342-7847983c-135a-41f5-a005-1c71df9295b4.png)
 
 
 ### Next step for this project: 
