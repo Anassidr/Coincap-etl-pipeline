@@ -33,7 +33,7 @@ with DAG('ETL_dag', default_args=default_args, schedule_interval="@daily", catch
     is_api_available = HttpSensor(
         task_id='is_api_available',
         http_conn_id='api_call',
-        endpoint= '/bitcoin/history?interval=d1'
+        endpoint= '/bitcoin/history?interval=h1'
     )
 
 
@@ -47,9 +47,20 @@ with DAG('ETL_dag', default_args=default_args, schedule_interval="@daily", catch
             create table bitcoin_data(
                 priceUsd float not null,
                 time int not null,
-                date date not null
+                circulatingsupply float not null,
+                date date not null,
+                hour int not null
             );
         '''
+    )
+
+    extract_data = SimpleHttpOperator(
+            task_id = 'extract_data',
+            http_conn_id='is_api_available',
+            method='GET',
+            endpoint= '/bitcoin/history?interval=h1'
+            response_filter=lambda response: json.loads(response.text),
+            log_response=True
     )
 
     is_api_available >> create_table
