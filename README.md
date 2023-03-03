@@ -17,4 +17,6 @@
 
 
 ### Next step for this project: 
-#### - Deploy the containers on the cloud (GCP). 
+#### 1. Deploy the containers on the cloud (GCP).
+#### 2. Use the bitcoin hourly prices that we fetched for some DataScience 
+
