@@ -1,5 +1,5 @@
 # Coincap-etl-pipeline
-## Using Airflow and Docker to ingest bitcoin data daily from the Coincap API to a postgres database
+## Using Airflow and Docker to fetch bitcoin data from the Coincap API and store it in postgres on a daily basis. 
 
 ### Steps of this project: 
 
