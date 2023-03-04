@@ -3,17 +3,24 @@
 
 ### Motivation for this project: 
 - The aim of this project is to build a Postgres database while:
-    - Dockerizing processes : set-up the docker-compose file and the Dockerfile (if needed). 
-    - Orchestrating with Airflow : Using Operators from the airflow libraries.
-- While I don't have a practical use case for bitcoin prices right now, I am using this pipeline as a placeholder for future ideas that I might have. I would be able to switch the Coincap API with a different API and be ready to go with minor adjustments.
-- Also, it might be interesting to generate statistics regarding bitcoin price variations. 
+    - Dockerizing processes : set-up the docker-compose file and the Dockerfile (in case a specific image is needed). 
+    - Orchestrating with Airflow : 
+        - Performing the ETL daily 
+        - Choosing the appropriate Operators from the airflow libraries.
+- While I don't have a strong practical use case for bitcoin prices right now, I am using this pipeline as a placeholder for future ideas that I might have. I would be able to switch the Coincap API with a different API and be ready to go with minor adjustments.
+- It might be interesting to generate statistics regarding bitcoin price variations. 
 
 
 ### Steps of this project: 
 
-#### 1. Set up the [docker-compose file](https://github.com/Anassidr/Coincap-etl-pipeline/blob/main/coincap-project/docker-compose.yaml) for airflow.
+#### 1. Check the [Coincap API](https://docs.coincap.io/) and decide which data we want to pull. 
+  - I am using the bitcoin hourly prices endpoint.
+    - This endpoint specified in the airflow UI >> connections
+    - It is subsequently called in the DAG.py file
 
-#### 2. Set up the [DAG.py file](https://github.com/Anassidr/Coincap-etl-pipeline/blob/main/coincap-project/dags/ETL_dag.py) with the following sequence of tasks:
+#### 2. Set up the [docker-compose file](https://github.com/Anassidr/Coincap-etl-pipeline/blob/main/coincap-project/docker-compose.yaml) for airflow.
+
+#### 3. Set up the [DAG.py file](https://github.com/Anassidr/Coincap-etl-pipeline/blob/main/coincap-project/dags/ETL_dag.py) with the following sequence of tasks:
   - Use the HTTPSensor Operator to make sure the API is functional
   - Use the Postgres Operator to create a table in the postgres container
   - Use the SimpleHttp Operator to get the data from the endpoint and store it in Xcom
@@ -26,5 +33,5 @@
 
 ### Possible next steps for this project: 
 #### 1. Deploy the containers on the cloud (GCP).
-#### 2. Use the bitcoin hourly prices that we fetched for some DataScience/Statistics. 
+#### 2. Fetch the bitcoin hourly prices from the Postgres and either generate dashboards or get statistics. 
 
