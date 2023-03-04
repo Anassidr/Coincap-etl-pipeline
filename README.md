@@ -5,8 +5,8 @@
 - The aim of this project is to build a Postgres database while:
     - Dockerizing processes : set-up the docker-compose file and the Dockerfile (in case a specific image is needed). 
     - Orchestrating with Airflow : 
-        - Performing the ETL daily 
-        - Choosing the appropriate Operators from the airflow libraries.
+        - Performing the ETL daily.
+        - Choosing the appropriate Operators from the airflow libraries when building the DAG.
 - While I don't have a strong practical use case for bitcoin prices right now, I am using this pipeline as a placeholder for future ideas that I might have. I would be able to switch the Coincap API with a different API and be ready to go with minor adjustments.
 - It might be interesting to generate statistics regarding bitcoin price variations. 
 
@@ -15,7 +15,7 @@
 
 #### 1. Check the [Coincap API](https://docs.coincap.io/) and decide which data we want to pull. 
   - I am using the bitcoin hourly prices endpoint.
-    - This endpoint specified in the airflow UI >> connections
+    - This endpoint is specified in the airflow UI >> connections
     - It is subsequently called in the DAG.py file
 
 #### 2. Set up the [docker-compose file](https://github.com/Anassidr/Coincap-etl-pipeline/blob/main/coincap-project/docker-compose.yaml) for airflow.
