@@ -4,7 +4,7 @@
 ### Motivation for this project: 
 - The aim of this project is to build a Postgres database while:
     - Dockerizing processes : set-up the docker-compose file and the Dockerfile (in case a specific image is needed). 
-    - Orchestrating with Airflow : 
+    - Orchestrating with Airflow: 
         - Performing the ETL daily.
         - Choosing the appropriate Operators from the airflow libraries when building the DAG.
 - While I don't have a strong practical use case for bitcoin prices right now, I am using this pipeline as a placeholder for future ideas that I might have. I would be able to switch the Coincap API with a different API and be ready to go with minor adjustments.
